@@ -16,3 +16,39 @@ variable "droplet_count" {
  type = number
  default = 2 
 }
+
+#set the vpc name 
+variable "vpc" {
+    type = string
+    default = "assignment-twu-vpc"
+}
+
+#set vm ubuntu info
+variable "ubuntu" {
+    type = string
+    default = "ubuntu-22-04-x64"
+}
+
+#set vm size 1 gigabyte
+variable "1g" {
+    type = string
+    default = "s-1vcpu-1gb"
+}
+
+#set vm rocky
+variable "rocky" {
+    type = string
+    default = "rockylinux-9-x64"
+}
+
+#set vm size 512 megabyte
+variable "512m" {
+    type = string
+    default = "s-1vcpu-512mb-10gb"
+}
+
+#set tag name
+variable "tab" {
+    type = string
+    default = "tag7assign01"
+}

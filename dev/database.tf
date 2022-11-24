@@ -8,16 +8,16 @@ resource "digitalocean_database_firewall" "example-fw" {
   }
 }
 
-resource "digitalocean_droplet" "tag7assign02" {
+resource "digitalocean_droplet" "tag7assign01" {
   count  = var.droplet_count
-  name   = "web-${count.index + 1}"
-  size   = "s-1vcpu-1gb"
-  image  = "ubuntu-22-04-x64"
+  name   = "webServer-assign-${count.index + 1}"
+  size   = var.usize
+  image  = var.ubuntu
   region = var.region
 }
 
 resource "digitalocean_database_cluster" "mongodb-example" {
-  name       = "example-mongo-cluster"
+  name       = "4640-twu-asssign-cluster"
   engine     = "mongodb"
   version    = "4" 
   size       = "db-s-1vcpu-1gb"
