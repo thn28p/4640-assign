@@ -30,7 +30,7 @@ variable "ubuntu" {
 }
 
 #set vm size 1 gigabyte
-variable "1g" {
+variable "one" {
     type = string
     default = "s-1vcpu-1gb"
 }
