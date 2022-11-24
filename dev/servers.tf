@@ -1,11 +1,11 @@
 # Create a new Web Droplet in the var region
 resource "digitalocean_droplet" "tag7assign01" {
-  image    = "rockylinux-9-x64"
+  image    = var.rocky
   count    = var.droplet_count
-  name     = "web-${count.index + 1}"
+  name     = "web-server-assign-${count.index + 1}"
   tags     = [digitalocean_tag.do_tag.id]
   region   = var.region
-  size     = "s-1vcpu-512mb-10gb"
+  size     = var.512m
   ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
   vpc_uuid = digitalocean_vpc.web_vpc.id
   lifecycle {
@@ -22,7 +22,7 @@ resource "digitalocean_project_resources" "project_attach" {
 
 #add balancer
 resource "digitalocean_loadbalancer" "public" {
- name = "loadbalancer-assign01"
+ name = "lb-assign01"
  region = var.region
 
 forwarding_rule {
@@ -38,7 +38,7 @@ forwarding_rule {
   protocol  = "tcp"
  }
 
- droplet_tag = "tag7assign01"
+ droplet_tag = var.tag
  vpc_uuid = digitalocean_vpc.web_vpc.id
 }
 
