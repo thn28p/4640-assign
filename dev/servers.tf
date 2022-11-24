@@ -38,7 +38,7 @@ forwarding_rule {
   protocol  = "tcp"
  }
 
- droplet_tag = var.tag
+ droplet_tag = "tag7assign01"
  vpc_uuid = digitalocean_vpc.web_vpc.id
 }
 
