@@ -111,9 +111,3 @@ resource "digitalocean_firewall" "web" {
     }
 }
 
-#add attach balancer to 4640-project
-resource "digitalocean_project_resources" "project_attach" {
-  project = data.digitalocean_project.lab_project.id
-  resources = flatten([ digitalocean_droplet.public.*.urn])
-}
-
