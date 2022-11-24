@@ -36,10 +36,3 @@ resource "digitalocean_firewall" "bastion" {
 }
 
 
-
-resource "digitalocean_project_resources" "project_attach" {
-  project = data.digitalocean_project.lab_project.id
-  resources = flatten([ digitalocean_droplet.tag7assign01.*.urn])
-}
-
-
