@@ -5,6 +5,7 @@ output "server_ip" {
 output "vpc_id" {
   description = "ID of project VPC"
   value       = digitalocean_vpc.web_vpc.id
+}
 
 output "lb_url" {
   description = "URL of load balancer"
