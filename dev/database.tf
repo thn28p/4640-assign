@@ -10,8 +10,8 @@ resource "digitalocean_database_firewall" "example-fw" {
 
 resource "digitalocean_droplet" "tag7assign01" {
   count  = var.droplet_count
-  name   = "webServer-assign-${count.index + 1}"
-  size   = var.usize
+  name   = "web-server-assign-${count.index + 1}"
+  size   = var.one
   image  = var.ubuntu
   region = var.region
 }

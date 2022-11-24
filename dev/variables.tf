@@ -42,7 +42,7 @@ variable "rocky" {
 }
 
 #set vm size 512 megabyte
-variable "512m" {
+variable "five" {
     type = string
     default = "s-1vcpu-512mb-10gb"
 }
