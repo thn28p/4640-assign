@@ -1,7 +1,7 @@
 # Create a bastion server
 resource "digitalocean_droplet" "bastion" {
   image    = "rockylinux-9-x64"
-  name     = "bastion-${var.region}"
+  name     = "bastion-assign-twu"
   region   = var.region
   size     = "s-1vcpu-512mb-10gb"
   ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
@@ -34,4 +34,12 @@ resource "digitalocean_firewall" "bastion" {
     destination_addresses = [digitalocean_vpc.web_vpc.ip_range]
   }
 }
+
+
+
+resource "digitalocean_project_resources" "project_attach" {
+  project = data.digitalocean_project.lab_project.id
+  resources = flatten([ digitalocean_droplet.tag7assign01.*.urn])
+}
+
 
