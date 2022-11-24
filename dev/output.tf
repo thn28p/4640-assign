@@ -1,5 +1,3 @@
-#output.tf
-
 output "server_ip" {
   value = digitalocean_droplet.tag7assign01.*.ipv4_address
  }
