@@ -5,7 +5,7 @@ resource "digitalocean_droplet" "tag7assign01" {
   name     = "web-server-assign-${count.index + 1}"
   tags     = [digitalocean_tag.do_tag.id]
   region   = var.region
-  size     = var.512m
+  size     = var.five
   ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
   vpc_uuid = digitalocean_vpc.web_vpc.id
   lifecycle {
