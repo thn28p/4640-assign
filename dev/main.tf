@@ -13,15 +13,14 @@ provider "digitalocean" {
 }
 
 data "digitalocean_ssh_key" "ssh_key"{
-  name = "lab4Rocky"
+  name = var.ssh_key
 }
 
 data "digitalocean_project" "lab_project" {
-name = "4640_labs"
+name = var.project
 }
 
 #Create a new tag
 resource "digitalocean_tag" "do_tag" {
-name = "tag7assign01"
+name = var.tag
 }
-
