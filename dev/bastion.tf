@@ -1,21 +1,23 @@
 # Create a bastion server
-resource "digitalocean_droplet" "bastion" {
-  image    = "rockylinux-9-x64"
-  name     = "bastion-assign-twu"
+resource "digitalocean_droplet" "bastion_dp" {
+  image    = var.rocky
+  size     = var.rsize
+  name     = "bastion-${var.region}"
+  #add 25 520
+  tags   = [digitalocean_tag.do_tag.id]
   region   = var.region
-  size     = "s-1vcpu-512mb-10gb"
   ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
   vpc_uuid = digitalocean_vpc.web_vpc.id
 }
 
 # firewall for bastion server
-resource "digitalocean_firewall" "bastion" {
-
+resource "digitalocean_firewall" "bastion_firewall" {
+  
   #firewall name
   name = "ssh-bastion-firewall"
 
   # Droplets to apply the firewall to
-  droplet_ids = [digitalocean_droplet.bastion.id]
+  droplet_ids = [digitalocean_droplet.bastion_dp.id]
 
   inbound_rule {
     protocol = "tcp"
@@ -34,5 +36,4 @@ resource "digitalocean_firewall" "bastion" {
     destination_addresses = [digitalocean_vpc.web_vpc.ip_range]
   }
 }
-
 
