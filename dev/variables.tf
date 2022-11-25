@@ -1,7 +1,5 @@
-#variable.tf
 
-#terraform variables
-#
+
 # The API token
 variable "do_token" {}
 
@@ -17,38 +15,51 @@ variable "droplet_count" {
  default = 2 
 }
 
-#set the vpc name 
-variable "vpc" {
-    type = string
-    default = "assignment-twu-vpc"
+#set ssh key name
+variable "ssh_key" {
+ type = string
+ default = "lab4Rocky"
 }
 
-#set vm ubuntu info
-variable "ubuntu" {
-    type = string
-    default = "ubuntu-22-04-x64"
-}
-
-#set vm size 1 gigabyte
-variable "one" {
-    type = string
-    default = "s-1vcpu-1gb"
-}
-
-#set vm rocky
-variable "rocky" {
-    type = string
-    default = "rockylinux-9-x64"
-}
-
-#set vm size 512 megabyte
-variable "five" {
-    type = string
-    default = "s-1vcpu-512mb-10gb"
+#set project name
+variable "project" {
+ type = string
+ default = "4640_labs"
 }
 
 #set tag name
-variable "tab" {
-    type = string
-    default = "tag7assign01"
+variable "tag" {
+ type = string
+ default = "tag7assign01"
+}
+
+#set vpc name
+variable "vpc" {
+ type = string
+ default = "vpcassign01"
+}
+
+#set rockylinux version
+variable "rocky" {
+ type = string
+ default = "rockylinux-9-x64"
+}
+
+
+#set rockylinux size
+variable "rsize" {
+ type = string
+ default = "s-1vcpu-512mb-10gb"
+}
+
+#set ubuntu version
+variable "ubuntu" {
+ type = string
+ default = "ubuntu-22-04-x64"
+}
+
+#set rockylinux size
+variable "usize" {
+ type = string
+ default = "s-1vcpu-1gb"
 }
