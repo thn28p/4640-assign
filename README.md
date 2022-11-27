@@ -51,8 +51,87 @@ example:
  4.2 After click connect, it will connect the database
 <img width="670" alt="image" src="https://user-images.githubusercontent.com/78245863/204117521-c86b2dac-f4a0-4190-8097-5833254ce348.png">
 
+
+#Bastion 
+5. Another new component is bastion 
+This the content of bastion
+
+
 example:
     
-    su 
+    # Create a bastion server
+    resource "digitalocean_droplet" "bastion_dp" {
+    image    = var.rocky
+    size     = var.rsize
+    name     = "bastion-${var.region}"
+    tags   = [digitalocean_tag.do_tag.id]
+    region   = var.region
+    ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
+    vpc_uuid = digitalocean_vpc.web_vpc.id
+    }
 
+    # firewall for bastion server
+    resource "digitalocean_firewall" "bastion_firewall" {
+  
+    #firewall name
+    name = "ssh-bastion-firewall"
+
+    # Droplets to apply the firewall to
+    droplet_ids = [digitalocean_droplet.bastion_dp.id]
+
+    inbound_rule {
+    protocol = "tcp"
+    port_range = "22"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+    }
+
+    outbound_rule {
+    protocol = "tcp"
+    port_range = "22"
+    destination_addresses = [digitalocean_vpc.web_vpc.ip_range]
+    }
+
+    outbound_rule {
+    protocol = "icmp"
+    destination_addresses = [digitalocean_vpc.web_vpc.ip_range]
+    }
+    }
+    
+<img width="890" alt="image" src="https://user-images.githubusercontent.com/78245863/204117902-0c475d88-8057-4c1c-9414-355e045006f1.png">
+
+6. After created bastion may try to connect to the server via bastion
+ first we need to run the commands to do ssh forwarding and the ssh agent
+ 
+  01 command:
+    
+    eval $(ssh-agent)
+
+<img width="1301" alt="image" src="https://user-images.githubusercontent.com/78245863/204118143-1fcc2f51-e0af-4be4-b96e-0fe1389b4a2e.png">
+
+
+ 02 command:
+    
+    ssh-add /home/vagrant/.ssh/id_rsa
+    
+ <img width="1413" alt="image" src="https://user-images.githubusercontent.com/78245863/204118161-cc3163fe-03ee-4667-9d39-81200200ef18.png">
+
+now ssh into bastion vm
+ 03 command:
+    
+    ssh -A root@<replaceThiswithBastionPublicIP>
+    
+  <img width="874" alt="image" src="https://user-images.githubusercontent.com/78245863/204118231-955a35ac-3a50-4efb-b117-309058086675.png">
+
+ now ssh into the server via bastion
+ 04 command:
+    
+    ssh root@<replaceThiswithServerPrivateIP>
+
+<img width="874" alt="image" src="https://user-images.githubusercontent.com/78245863/204118260-2dda639f-df1c-4797-8c1b-70f464f2fac6.png">
+
+ 
+    
+ 
+    
+    
     
