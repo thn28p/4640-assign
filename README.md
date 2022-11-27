@@ -127,7 +127,9 @@ now ssh into bastion vm
     
     ssh root@<replaceThiswithServerPrivateIP>
 
-<img width="874" alt="image" src="https://user-images.githubusercontent.com/78245863/204118260-2dda639f-df1c-4797-8c1b-70f464f2fac6.png">
+<img width="874" alt="image" src="https://user-images.githubusercontent.com/78245863/204118301-cfc0d8f5-b537-41fd-a69d-5b789906204f.png">
+
+
 
  
     
