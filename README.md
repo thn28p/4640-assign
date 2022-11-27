@@ -46,8 +46,8 @@ example:
 <img width="561" alt="image" src="https://user-images.githubusercontent.com/78245863/204117229-988fe7ae-6e6b-4bf6-9c2e-ca9f7b1f8837.png">
 
  4.1 Paste the copied string into the box on mongoDB compass
-<img width="1046" alt="Screen Shot 2022-11-27 at 11 00 33 AM" src="https://user-images.githubusercontent.com/78245863/204117301-18e2e018-7a4a-4f86-aedb-0c3541b0242f.png">
- 
+  <img width="1050" alt="Screen Shot 2022-11-27 at 11 19 40 AM" src="https://user-images.githubusercontent.com/78245863/204117726-789d3397-a32d-4639-a7bc-db660b7ed400.png">
+
  4.2 After click connect, it will connect the database
 <img width="670" alt="image" src="https://user-images.githubusercontent.com/78245863/204117521-c86b2dac-f4a0-4190-8097-5833254ce348.png">
 
