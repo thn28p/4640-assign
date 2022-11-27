@@ -1,6 +1,6 @@
 output "server_ip" {
   description = "server ip address:"  
-  value = digitalocean_droplet.db_droplet.*.ipv4_address
+  value = digitalocean_droplet.web.*.ipv4_address
  }
 
 # output "vpc_id" {  
