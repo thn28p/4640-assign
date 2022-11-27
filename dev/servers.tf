@@ -1,3 +1,26 @@
+# server.tf
+#########################################################################
+# Create a new Web Droplet in the var region
+resource "digitalocean_droplet" "web" {
+  image    = var.rocky
+  size     = var.rsize
+  count    = var.droplet_count
+  name     = "web-${count.index + 1}"
+  tags     = [digitalocean_tag.do_tag.id]
+  region   = var.region
+  ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
+  vpc_uuid = digitalocean_vpc.web_vpc.id
+  lifecycle {
+   create_before_destroy = true
+  }
+}
+
+resource "digitalocean_project_resources" "project_attach" {
+  project = data.digitalocean_project.lab_project.id
+  resources = flatten([ digitalocean_droplet.web.*.urn])
+ }
+#########################################################################
+
 #add balancer
 resource "digitalocean_loadbalancer" "public" {
  name = "loadbalancer-assign01"
@@ -20,13 +43,15 @@ forwarding_rule {
  vpc_uuid = digitalocean_vpc.web_vpc.id
 }
 
+
+
 resource "digitalocean_firewall" "web_dp_firewall" {
 
-    # The name we give our firewall for ease of use                                
+    # The name we give our firewall for ease of use                            #    
     name = "web-firewall"
 
-    # The droplets to apply this firewall to   
-    droplet_ids = digitalocean_droplet.db_droplet.*.id
+    # The droplets to apply this firewall to                                   #
+    droplet_ids = digitalocean_droplet.web.*.id
 
     # Internal VPC Rules. We have to let ourselves talk to each other
     inbound_rule {
