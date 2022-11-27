@@ -3,7 +3,6 @@ resource "digitalocean_droplet" "bastion_dp" {
   image    = var.rocky
   size     = var.rsize
   name     = "bastion-${var.region}"
-  #add 25 520
   tags   = [digitalocean_tag.do_tag.id]
   region   = var.region
   ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
@@ -36,4 +35,3 @@ resource "digitalocean_firewall" "bastion_firewall" {
     destination_addresses = [digitalocean_vpc.web_vpc.ip_range]
   }
 }
-
